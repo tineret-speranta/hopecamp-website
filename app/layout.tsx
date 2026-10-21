@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "sonner";
 import { AuthProvider } from "@/contexts/auth-context";
-import { editionName, title } from "@/lib/constants";
 
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -20,7 +19,9 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: `${title}: ${editionName} - Tineret Speranta Oradea`,
+  // Inscrierile nu sunt deschise inca - titlul generic pana la urmatoarea editie
+  // title: `${title}: ${editionName} - Tineret Speranta Oradea`,
+  title: "Hope Camp - Tineret Speranta Oradea",
   description:
     "Tabăra de vară de la Tineret Speranta Oradea pentru tineri creștini care caută să își întărească relațiile cu Dumnezeu și cu cei din jur",
 };

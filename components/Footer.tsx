@@ -60,14 +60,15 @@ export default function Footer() {
             >
               Despre
             </button>
-            <Link
+            {/* Inscrierile nu sunt deschise inca */}
+            {/* <Link
               href="https://app.inrola.com/r/tso/hope-camp-7"
               target="_blank"
               rel="noopener noreferrer"
               className="block text-[#1a1a1a] text-sm mb-2.5 hover:opacity-60 transition-opacity"
             >
               Contul meu
-            </Link>
+            </Link> */}
           </div>
 
           {/* Resurse */}

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { dateRange, location } from "@/lib/constants";
+import { upcomingEditions } from "@/lib/constants";
+import AddToCalendar from "@/components/AddToCalendar";
 import { useState } from "react";
 
 // Format date range nicely
@@ -20,9 +21,8 @@ const formatDateRange = (start: Date, end: Date): string => {
 };
 
 export default function Hero() {
-  const targetDate = dateRange.endDate;
-  const [hasEnded] = useState<boolean>(() => +targetDate < +new Date());
-  const formattedDate = formatDateRange(dateRange.startDate, dateRange.endDate);
+  // Inscrierile nu sunt deschise inca, asa ca afisam mereu butonul de poze
+  const [hasEnded] = useState<boolean>(true);
 
   const heroPhotos = [
     "/assets/images/hopecamp/gratiadei/compressed/gratiadei-5.jpg",
@@ -46,29 +46,40 @@ export default function Hero() {
                   HC
                 </span>
               </span>
-              <span className="text-[clamp(1.5rem,4vw,3rem)] text-[#FFD600] ml-2 sm:ml-3 align-bottom">#7</span>
               <span className="text-xs sm:text-sm font-sans font-medium tracking-[3px] uppercase text-gray-400 ml-3 sm:ml-4 align-bottom">
                 EST. 2019
               </span>
             </h1>
           </div>
 
-          {/* Location & Date info */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-4 sm:mt-6 text-sm sm:text-base text-gray-500">
-            <span className="inline-flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-[#FFD600]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <strong className="text-[#1a1a1a]">{location.name}</strong>, {location.addressLine}
-            </span>
-            <span className="text-gray-300 hidden sm:inline">·</span>
-            <span className="inline-flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-[#FFD600]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              {formattedDate}
-            </span>
+          {/* Upcoming editions: location & date info */}
+          <div className="flex flex-col gap-5 sm:gap-3 mt-4 sm:mt-6 text-sm sm:text-base text-gray-500">
+            {upcomingEditions.map((edition) => (
+              <div key={edition.name} className="flex flex-col items-start sm:flex-row sm:flex-wrap sm:items-center gap-x-4 gap-y-1.5">
+                <span className="font-archivo uppercase tracking-tight text-[#1a1a1a] text-base sm:text-lg">
+                  {edition.name} <span className="text-[#FFD600]">#{edition.number}</span>
+                </span>
+                <span className="inline-flex items-center gap-1.5">
+                  <svg className="w-4 h-4 text-[#FFD600]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span>
+                    <strong className="text-[#1a1a1a]">{edition.location.name}</strong>, {edition.location.addressLine}
+                  </span>
+                </span>
+                <span className="text-gray-300 hidden sm:inline">·</span>
+                <span className="inline-flex items-center gap-3">
+                  <span className="inline-flex items-center gap-1.5">
+                    <svg className="w-4 h-4 text-[#FFD600]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    {formatDateRange(edition.startDate, edition.endDate)}
+                  </span>
+                  <AddToCalendar edition={edition} />
+                </span>
+              </div>
+            ))}
           </div>
 
           {/* Bottom row: buttons + description */}
@@ -82,14 +93,16 @@ export default function Hero() {
                   VEZI POZE
                 </Link>
               ) : (
-                <Link
-                  href="https://app.inrola.com/r/tso/hope-camp-7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none inline-block px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-[#FFD600] bg-transparent text-[#1a1a1a] text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-[#FFD600] transition-colors text-center"
-                >
-                  INSCRIE-TE
-                </Link>
+                // Inscrierile nu sunt deschise inca
+                // <Link
+                //   href="https://app.inrola.com/r/tso/hope-camp-7"
+                //   target="_blank"
+                //   rel="noopener noreferrer"
+                //   className="flex-1 sm:flex-none inline-block px-6 sm:px-8 py-3 sm:py-3.5 border-2 border-[#FFD600] bg-transparent text-[#1a1a1a] text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-[#FFD600] transition-colors text-center"
+                // >
+                //   INSCRIE-TE
+                // </Link>
+                null
               )}
               <Link
                 href="#video"

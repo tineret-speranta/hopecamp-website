@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { dateRange } from "@/lib/constants";
+import { upcomingEditions } from "@/lib/constants";
 
 interface TimeLeft {
   days: number;
@@ -34,7 +34,11 @@ const TimeBox = ({ value, label }: { value: string; label: string }) => (
 );
 
 export default function CountdownTimer() {
-  const targetDate = dateRange.startDate;
+  // Numaratoare inversa pana la urmatoarea editie care nu a inceput inca
+  const nextEdition =
+    upcomingEditions.find((edition) => +edition.startDate > +new Date()) ??
+    upcomingEditions[upcomingEditions.length - 1];
+  const targetDate = nextEdition.startDate;
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -64,6 +68,9 @@ export default function CountdownTimer() {
 
   return (
     <div className="bg-[#FFD600] mx-4 sm:mx-12 mt-4 sm:mt-6 px-4 sm:px-12 py-8 sm:py-12">
+      <p className="text-center font-archivo uppercase tracking-tight text-[#1a1a1a] text-lg sm:text-2xl mb-4 sm:mb-6">
+        {nextEdition.name} #{nextEdition.number} începe în
+      </p>
       <div className="max-w-3xl mx-auto grid grid-cols-4 gap-3 sm:gap-8">
         <TimeBox value={display.d} label="Zile" />
         <TimeBox value={display.h} label="Ore" />
