@@ -116,3 +116,7 @@ This project uses Supabase for backend services. For local development:
 - **UI Protection**: Use `AdminProtected` component for page-level protection
 - **Navigation**: Update navigation permissions when adding new admin features
 - **Testing**: Include permission scenarios in integration tests
+
+## Registration status
+
+Registration is currently paused and several homepage elements are commented out. See `REGISTRATION_PAUSED.md` for the full list and the checklist to re-enable it.

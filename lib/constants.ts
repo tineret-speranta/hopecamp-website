@@ -51,6 +51,34 @@ export const location = {
   iframeSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2724.9348749168994!2d25.073952013226762!3d46.923662271014976!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474a691f33cafb27%3A0x7ce297c0c07c92e9!2sSat%20de%20Vacanta%20Integro!5e0!3m2!1sro!2sro!4v1773126760890!5m2!1sro!2sro",
 };
 
+// Editiile urmatoare afisate pe pagina principala
+export const upcomingEditions = [
+  {
+    name: "Winter Camp",
+    number: 4,
+    startDate: new Date("2027-02-25"),
+    endDate: new Date("2027-02-28"),
+    location: {
+      name: "Arieșeni",
+      addressLine: "județul Alba",
+      googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Arie%C8%99eni%2C+Alba",
+      iframeSrc: "https://maps.google.com/maps?q=Arie%C8%99eni%2C+Alba&z=13&output=embed",
+    },
+  },
+  {
+    name: "Hope Camp",
+    number: 8,
+    startDate: new Date("2027-08-03"),
+    endDate: new Date("2027-08-08"),
+    location: {
+      name: "Sequoia",
+      addressLine: "Săcuieu, județul Cluj",
+      googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Pensiunea+Sequoia+S%C4%83cuieu",
+      iframeSrc: "https://maps.google.com/maps?q=Pensiunea+Sequoia+S%C4%83cuieu&z=13&output=embed",
+    },
+  },
+];
+
 export const MinimumAge = {
   normal: 16,
   memberOfChurch: 15,
@@ -66,6 +94,14 @@ export const contactInfo = {
 };
 
 export const faqData = [
+  {
+    question: "Cum pot să mă înscriu?",
+    answer:
+      "Momentan înscrierile nu sunt deschise. Revino mai târziu, vom anunța când se deschid înscrierile!",
+    tags: ["înscriere"],
+  },
+  // Urmatoarele 4 intrebari sunt despre editia trecuta si nu pot fi raspunse inca
+  /*
   {
     question: "Cum pot să mă înscriu?",
     answer:
@@ -115,6 +151,7 @@ export const faqData = [
     answer: `Poți achita la <ol><li><strong>${payTaxToOptions[0].value}</strong>, telefon <a href="https://wa.me/${payTaxToOptions[0].phone.replace(/[^0-9]/g, "")}" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#FFD600]">${payTaxToOptions[0].phone}</a></li><li><strong>${payTaxToOptions[1].value}</strong>, telefon <a href="https://wa.me/${payTaxToOptions[1].phone.replace(/[^0-9]/g, "")}" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#FFD600]">${payTaxToOptions[1].phone}</a></li></ol><em>De preferat ca plățile să fie făcute <strong>cash</strong>. <strong>Revolut</strong> sau <strong>BT Pay</strong> se pot folosi în cazuri în care nu este posibilă plata cash.</em><br/><br/>Pentru alte variante sau ajutor te rugăm să ne scrii pe WhatsApp la <strong> <a href="${contactInfo.whatsapp}" target="_blank" rel="noopener noreferrer">${contactInfo.phone}</a></strong>`,
     tags: ["financiar"],
   },
+  */
   {
     question: "Sunt chestiuni diferite dacă sunt minor?",
     answer:
